@@ -1,0 +1,11 @@
+# duplicate and rename without the example suffix, then enter the storage account access key and save
+
+terraform {
+    backend "azurerm" {
+        resource_group_name  = "xxxxxx-xxx-xxx-xxxx"
+        storage_account_name = "xxxxxxxxxxxxx"
+        container_name       = "state"
+        key                  = "azure-network.terraform.state"
+        access_key           = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+}

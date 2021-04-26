@@ -1,7 +1,7 @@
 resource "azurerm_public_ip" "winvmip" {
   name                = "${local.env}-${local.region}-windows-ip"
-  resource_group_name = azurerm_resource_group.network.name
-  location            = azurerm_resource_group.network.location
+  resource_group_name = data.azurerm_resource_group.network.name
+  location            = data.azurerm_resource_group.network.location
   allocation_method   = "Dynamic"
 }
 
@@ -13,8 +13,8 @@ resource "random_string" "windows" {
 
 resource "azurerm_network_interface" "windows" {
   name                = "${local.env}-${local.region}-windows-nic"
-  location            = azurerm_resource_group.network.location
-  resource_group_name = azurerm_resource_group.network.name
+  location            = data.azurerm_resource_group.network.location
+  resource_group_name = data.azurerm_resource_group.network.name
 
   ip_configuration {
     name                          = "${local.env}-${local.region}-windows-ipc"
@@ -26,8 +26,8 @@ resource "azurerm_network_interface" "windows" {
 
 resource "azurerm_virtual_machine" "windows" {
   name                             = "${local.env}${local.region}windows"
-  location                         = azurerm_resource_group.network.location
-  resource_group_name              = azurerm_resource_group.network.name
+  location                         = data.azurerm_resource_group.network.location
+  resource_group_name              = data.azurerm_resource_group.network.name
   network_interface_ids            = [azurerm_network_interface.windows.id]
   vm_size                          = var.vm_size
   delete_os_disk_on_termination    = true

@@ -6,8 +6,8 @@ resource "random_string" "value" {
 
 resource "azurerm_network_interface" "linux" {
   name                = "${local.env}-${local.region}-linux-nic"
-  location            = azurerm_resource_group.network.location
-  resource_group_name = azurerm_resource_group.network.name
+  location            = data.azurerm_resource_group.network.location
+  resource_group_name = data.azurerm_resource_group.network.name
 
   ip_configuration {
     name                                          = "${local.env}-${local.region}-linux-ipc"
@@ -18,8 +18,8 @@ resource "azurerm_network_interface" "linux" {
 
 resource "azurerm_virtual_machine" "linux" {
   name                             = "${local.env}${local.region}linux"
-  location                         = azurerm_resource_group.network.location
-  resource_group_name              = azurerm_resource_group.network.name
+  location                         = data.azurerm_resource_group.network.location
+  resource_group_name              = data.azurerm_resource_group.network.name
   network_interface_ids            = [azurerm_network_interface.linux.id]
   vm_size                          = var.vm_size
   delete_os_disk_on_termination    = true

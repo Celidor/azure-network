@@ -4,7 +4,7 @@ variable "app" {
 
 variable "location" {
     description = "Default Azure region"
-    default = "north europe"
+    default = "west europe"
 }
 
 variable "region" {

@@ -1,6 +1,6 @@
 resource "azurerm_virtual_network" "network" {
   name                = "${local.env}-${local.region}-vnet"
-  location            = data.azurerm_resource_group.network.location
+  location            = var.location
   resource_group_name = data.azurerm_resource_group.network.name
   address_space       = var.vnet_address_space
 }

@@ -1,6 +1,6 @@
 resource "azurerm_network_security_group" "nsg1" {
   name                = "${local.env}-${local.region}-nsg01"
-  location            = data.azurerm_resource_group.network.location
+  location            = var.location
   resource_group_name = data.azurerm_resource_group.network.name
 }
 
@@ -25,7 +25,7 @@ resource "azurerm_network_security_rule" "nsg1rule1" {
 
 resource "azurerm_network_security_group" "nsg2" {
   name                = "${local.env}-${local.region}-nsg02"
-  location            = data.azurerm_resource_group.network.location
+  location            = var.location
   resource_group_name = data.azurerm_resource_group.network.name
 }
 

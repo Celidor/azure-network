@@ -1,7 +1,11 @@
 resource "random_string" "value" {
-  length = 25
-  special = true
+  length           = 25
+  special          = true
   override_special = "-"
+  min_lower        = 1
+  min_upper        = 1
+  min_special      = 1
+  min_numeric      = 1
 }
 
 resource "azurerm_network_interface" "linux" {
@@ -10,9 +14,9 @@ resource "azurerm_network_interface" "linux" {
   resource_group_name = data.azurerm_resource_group.network.name
 
   ip_configuration {
-    name                                          = "${local.env}-${local.region}-linux-ipc"
-    subnet_id                                     = azurerm_subnet.subnet2.id
-    private_ip_address_allocation                 = "Dynamic"
+    name                          = "${local.env}-${local.region}-linux-ipc"
+    subnet_id                     = azurerm_subnet.subnet2.id
+    private_ip_address_allocation = "Dynamic"
   }
 }
 

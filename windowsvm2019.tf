@@ -6,9 +6,13 @@ resource "azurerm_public_ip" "winvmip" {
 }
 
 resource "random_string" "windows" {
-  length = 25
-  special = true
+  length           = 25
+  special          = true
   override_special = "-"
+  min_lower        = 1
+  min_upper        = 1
+  min_special      = 1
+  min_numeric      = 1
 }
 
 resource "azurerm_network_interface" "windows" {
